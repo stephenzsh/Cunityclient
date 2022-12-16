@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6695ac98b5a7a41bc10f26d58fac4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 400
-  runSpeed: 500
+  walkSpeed: 2000
+  runSpeed: 3000
   _isWalking: 0
   jumpImpulse: 50
 --- !u!114 &1663538367503531727
