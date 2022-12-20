@@ -1,25 +1,37 @@
-﻿using System;
+﻿using Protobuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
-    public class RequestManager :BaseManager
-    {
+public class RequestManager : BaseManager
+{
     public RequestManager(GameFace face) : base(face) { }
 
 
-    //
-    private Dictionary<int, BaseRequest> requestDict = new Dictionary<int, BaseRequest>();
+    private Dictionary<RequestType, BaseRequest> requestDict = new Dictionary<RequestType, BaseRequest>();
 
-    public void AddRequest(BaseRequest request)
+    public void AddRequest(BaseRequest request,RequestType type)
     {
-        requestDict.Add(0,request);
+        requestDict.Add(type, request);
     }
 
-    public void RemoveRequest(int i)
+    public void RemoveRequest(RequestType type)
     {
-        requestDict.Remove(i);
+        requestDict.Remove(type);
+    }
+    public void HandleResponse(Message msg, RequestType type)
+    {
+        if (requestDict.TryGetValue(type, out BaseRequest request))
+        {
+            request.OnResponse(msg);
+        }
+        else
+        {
+            Debug.Log(" 不能处理error");
+        }
     }
 }
 

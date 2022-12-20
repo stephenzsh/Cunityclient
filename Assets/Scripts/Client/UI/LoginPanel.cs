@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class LoginPanel : BasePanel
 {
 
-    public InputField user, pass;
+    public InputField user, password;
     public Button loginBtn;
     public Button SignBtn;
 
-    public LoginRequest loginRequest; 
+    public LoginRequest loginRequest;
     public void OnLoginClick()
     {
-        
-        loginRequest.OnClick();
+        if (user.text == ""|| password.text == "")
+        {
+            Debug.Log("用户名密码不能为空");
+        }
+        loginRequest.OnClick(user.text,password.text);
     }
 
     // Update is called once per frame

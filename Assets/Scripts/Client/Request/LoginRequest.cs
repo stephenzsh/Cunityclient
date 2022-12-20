@@ -1,37 +1,32 @@
 ﻿
 
+using Google.Protobuf;
 using Protobuf;
 using UnityEngine;
 
 
 public class LoginRequest : BaseRequest
 {
-    private static LoginRequest _instance;
-    public static LoginRequest Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
 
+    public LoginRequest request;
 
     public override void Awake()
     {
         base.Awake();
-        _instance = new LoginRequest();
+        face.AddRequest(this,RequestType.Login);
+        //request = new LoginRequest();
     }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        face.RemoveRequest(RequestType.Login);
+    }
+
 
     public void SendRequest(string roomname, string operate)
     {
 
-        UserMessage usermessage = new UserMessage()
-        {
-            Flag = false,
-            Roomname = roomname,
-            Operate = operate
-
-        };
+        
         //byte[] data = usermessage.ToByteArray();
         // Message pack = new Message((uint)data.Length, 0, data);
         // 序列化 Person 实例
@@ -41,14 +36,34 @@ public class LoginRequest : BaseRequest
         //Person john2 = Person.Parser.ParseFrom(data);
     }
 
-    public void ResovleResponse()
+    
+    public void OnClick(string user, string password)
     {
+        
+
+        UserMessage usermessage = new UserMessage()
+        {
+            Flag = false,
+            Roomname = user,
+            Operate = "add"
+
+        };
+        Debug.Log(usermessage);
+        Message msg = new Message();
+        msg.Data = usermessage.ToByteArray();
+        
+        SendRequest(msg,RequestType.Login);
+
 
     }
-    public void OnClick()
+
+    public override void SendRequest(Message msg, RequestType type)
     {
-        Debug.Log("dianjishijian");
+        
+        base.SendRequest(msg,type);
     }
-
-
+    public override void OnResponse(Message msg)
+    {
+        base.OnResponse(msg);
+    }
 }

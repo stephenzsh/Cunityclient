@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d52aafb70fcc7e42808a6cddfb54a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  request: {fileID: 0}
 --- !u!1 &6066510991539878721
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 7722363429295405392}
-  pass: {fileID: 7492749195508044760}
+  password: {fileID: 7492749195508044760}
   loginBtn: {fileID: 3197983729769685876}
   SignBtn: {fileID: 8936162278263242510}
   loginRequest: {fileID: 7608164902600191830}

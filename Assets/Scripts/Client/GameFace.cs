@@ -1,6 +1,6 @@
-﻿using Net;
+﻿
 using Protobuf;
-using System.Collections;
+
 using UnityEngine;
 
 
@@ -11,6 +11,8 @@ public class GameFace : MonoBehaviour
     public UIManager uIManager;
 
     public RequestManager requestManager;
+
+    public ClientManager clientManager;
 
     private static GameFace face;
     public static GameFace Face
@@ -25,45 +27,44 @@ public class GameFace : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        InitNet();
-        InitManager();
-        //        ChatView.OpenView("Prefabs/ChatView/ChatView");
-    }
     void Awake()
     {
         uIManager = new UIManager(this);
         requestManager = new RequestManager(this);
-        
+        clientManager = new ClientManager(this);
         uIManager.OnInit();
         requestManager.OnInit();
+        clientManager.OnInit();
     }
+    
 
     private void OnDestroy()
     {
         uIManager.OnDestroy();
         requestManager.OnDestroy();
-    }
-    private void InitNet()
-    {
-        gameObject.AddComponent<NetManager>();
-        //NetManager.Instance.SendConnect();
+        clientManager.OnDestroy();
     }
 
-    private void InitManager()
+    public void Send(Message msg, RequestType type)
     {
-        gameObject.AddComponent<GameModule>();
-
+        clientManager.Send(msg,type);
+    }
+    public void HandleResponse(Message msg, RequestType type)
+    {
+        requestManager.HandleResponse(msg,type);
     }
 
-    public void AddRequest(BaseRequest request)
+    public void AddRequest(BaseRequest request,RequestType type)
     {
-        requestManager.AddRequest(request);
+        requestManager.AddRequest(request,type);
     }
-    public void RemoveRequest(int i)
+    public void RemoveRequest(RequestType type)
     {
-        requestManager.RemoveRequest(i);
+        requestManager.RemoveRequest(type);
     }
+
+
+
+
 
 }
