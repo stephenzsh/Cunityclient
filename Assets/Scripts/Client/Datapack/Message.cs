@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 [Serializable]
 public class Message
 {
-    //public uint DataLen { get; set; }
+    public uint DataLen { get; set; }
     public uint ID { get; set; }
     public byte[] Data { get; set; }
 }

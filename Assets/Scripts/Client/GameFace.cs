@@ -45,9 +45,9 @@ public class GameFace : MonoBehaviour
         clientManager.OnDestroy();
     }
 
-    public void Send(Message msg, RequestType type)
+    public void Send(Message msg)
     {
-        clientManager.Send(msg,type);
+        clientManager.Send(msg);
     }
     public void HandleResponse(Message msg, RequestType type)
     {

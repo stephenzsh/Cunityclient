@@ -25,7 +25,7 @@ public class BaseRequest : MonoBehaviour
 
     }
    
-    public virtual void SendRequest(Message msg, RequestType type) {
-        face.Send(msg,type);
+    public virtual void SendRequest(Message msg) {
+        face.Send(msg);
     }
 }

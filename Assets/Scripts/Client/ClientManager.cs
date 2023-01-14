@@ -54,18 +54,18 @@ public class ClientManager : BaseManager
 
     private void StartReceive()
     {
-
-        //socket.BeginReceive(dataLengthBytes,0,4, SocketFlags.None, ReceiveCallback,null);
-        int bytesReceived = socket.Receive(dataLengthBytes);
-        int dataLength = BitConverter.ToInt32(dataLengthBytes, 0);
-        data = new byte[dataLength];
-        socket.BeginReceive(data, 0, data.Length, SocketFlags.None, ReceiveCallback, null);
+        
+        var datalenth = new byte[1024];
+        int bytesReceived = socket.Receive(datalenth);
+        //int dataLength = BitConverter.ToInt32(dataLengthBytes, 0);
+        //data = new byte[dataLength];
+        socket.BeginReceive(data, 0, bytesReceived, SocketFlags.None, ReceiveCallback, null);
 
 
     }
     private void ReceiveCallback(IAsyncResult ar)
     {
-
+        
         SocketWrapper wrapper = (SocketWrapper)ar.AsyncState;
         Socket socket = wrapper.Socket;
         int bytesReceived = socket.EndReceive(ar);
@@ -84,9 +84,9 @@ public class ClientManager : BaseManager
         face.HandleResponse(msg, type);
     }
 
-    public void Send(Message msg,RequestType type)
+    public void Send(Message msg)
     {
-        socket.Send(MessagePack.Pack(msg,type));
+        socket.Send(MessagePack.Pack(msg));
     }
 
 

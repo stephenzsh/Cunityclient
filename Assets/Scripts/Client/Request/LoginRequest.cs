@@ -2,6 +2,7 @@
 
 using Google.Protobuf;
 using Protobuf;
+using System;
 using UnityEngine;
 
 
@@ -48,19 +49,20 @@ public class LoginRequest : BaseRequest
             Operate = "add"
 
         };
-        Debug.Log(usermessage);
+        
         Message msg = new Message();
         msg.Data = usermessage.ToByteArray();
-        
-        SendRequest(msg,RequestType.Login);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Start); 
+        msg.DataLen = (uint)usermessage.ToByteArray().Length;
+        SendRequest(msg);
 
 
     }
 
-    public override void SendRequest(Message msg, RequestType type)
+    public override void SendRequest(Message msg)
     {
         
-        base.SendRequest(msg,type);
+        base.SendRequest(msg);
     }
     public override void OnResponse(Message msg)
     {
