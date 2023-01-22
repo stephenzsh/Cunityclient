@@ -24,36 +24,23 @@ public class LoginRequest : BaseRequest
     }
 
 
-    public void SendRequest(string roomname, string operate)
-    {
-
-        
-        //byte[] data = usermessage.ToByteArray();
-        // Message pack = new Message((uint)data.Length, 0, data);
-        // 序列化 Person 实例
-        // byte[] data = john.ToByteArray();
-
-        // 反序列化 Person 实例
-        //Person john2 = Person.Parser.ParseFrom(data);
-    }
-
     
     public void OnClick(string user, string password)
     {
         
 
-        UserMessage usermessage = new UserMessage()
+        LoginMessage loginmessage = new LoginMessage()
         {
-            Flag = false,
-            Roomname = user,
-            Operate = "add"
-
+          
+            Username = user,
+            Password= password,
+            Type = 1,
         };
         
         Message msg = new Message();
-        msg.Data = usermessage.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Start); 
-        msg.DataLen = (uint)usermessage.ToByteArray().Length;
+        msg.Data = loginmessage.ToByteArray();
+        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Login); 
+        msg.DataLen = (uint)loginmessage.ToByteArray().Length;
         SendRequest(msg);
 
 
@@ -66,6 +53,7 @@ public class LoginRequest : BaseRequest
     }
     public override void OnResponse(Message msg)
     {
-        base.OnResponse(msg);
+        RoomListMessage obj = RoomListMessage.Parser.ParseFrom(msg.Data);
+        
     }
 }

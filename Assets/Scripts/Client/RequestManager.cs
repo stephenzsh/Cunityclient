@@ -24,7 +24,7 @@ public class RequestManager : BaseManager
     }
     public void HandleResponse(Message msg, RequestType type)
     {
-        Debug.Log(msg);
+        
         if (requestDict.TryGetValue(type, out BaseRequest request))
         {
             request.OnResponse(msg);

@@ -1,20 +1,18 @@
-﻿using Protobuf;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Net.Sockets;
-using System.Text;
+
 using System.Threading;
-using System.Threading.Tasks;
+
 using UnityEngine;
 
 public class ClientManager : BaseManager
 {
 
     private Socket socket;
-    private byte[] dataLengthBytes = new byte[4];
-    private byte[] data;
-    SocketWrapper wrapper;
+    private byte[] buffer = new byte[1024];
+    
     public ClientManager(GameFace face) : base(face) { }
 
     public override void OnInit()
@@ -33,11 +31,7 @@ public class ClientManager : BaseManager
     private void InitSocket()
     {
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        wrapper = new SocketWrapper
-        {
-            Socket = socket,
-            Data = data
-        };
+        
         try
         {
             socket.Connect("127.0.0.1", 8999);
@@ -54,30 +48,29 @@ public class ClientManager : BaseManager
 
     private void StartReceive()
     {
-        
-        var datalenth = new byte[1024];
-        int bytesReceived = socket.Receive(datalenth);
-        //int dataLength = BitConverter.ToInt32(dataLengthBytes, 0);
-        //data = new byte[dataLength];
-        socket.BeginReceive(data, 0, bytesReceived, SocketFlags.None, ReceiveCallback, null);
-
-
+        socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, socket);
     }
+
     private void ReceiveCallback(IAsyncResult ar)
     {
-        
-        SocketWrapper wrapper = (SocketWrapper)ar.AsyncState;
-        Socket socket = wrapper.Socket;
         int bytesReceived = socket.EndReceive(ar);
         if (bytesReceived > 0)
         {
             // 处理接收到的数据
-            byte[] msgdata = wrapper.Data;
+            byte[] bytes = new byte[bytesReceived];        
+            byte[] msgdata = bytes;
+            Array.Copy(buffer, msgdata, bytesReceived);
             Message msg = MessagePack.Unpack(msgdata);
             HandleResponse(msg, (RequestType)msg.ID);
         }
-        StartReceive();
+        else
+        {
+            CloseSocket();
+            return;
+        }
 
+        // Begin receiving data again
+        StartReceive();
     }
     public void HandleResponse(Message msg, RequestType type)
     {
@@ -99,10 +92,6 @@ public class ClientManager : BaseManager
     }
 
 
-    class SocketWrapper
-    {
-        public Socket Socket { get; set; }
-        public byte[] Data { get; set; }
-    }
+    
 }
 

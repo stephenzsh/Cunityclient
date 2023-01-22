@@ -26,7 +26,7 @@ namespace Protobuf {
           string.Concat(
             "ChJsb2dpbm1lc3NhZ2UucHJvdG8SCHByb3RvYnVmIkAKDExvZ2luTWVzc2Fn",
             "ZRIQCgh1c2VybmFtZRgBIAEoCRIQCghwYXNzd29yZBgCIAEoCRIMCgR0eXBl",
-            "GAMgASgJQg1aCy4vO3Byb3RvYnVmYgZwcm90bzM="));
+            "GAMgASgFQg1aCy4vO3Byb3RvYnVmYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -109,13 +109,13 @@ namespace Protobuf {
 
     /// <summary>Field number for the "type" field.</summary>
     public const int TypeFieldNumber = 3;
-    private string type_ = "";
+    private int type_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Type {
+    public int Type {
       get { return type_; }
       set {
-        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        type_ = value;
       }
     }
 
@@ -146,7 +146,7 @@ namespace Protobuf {
       int hash = 1;
       if (Username.Length != 0) hash ^= Username.GetHashCode();
       if (Password.Length != 0) hash ^= Password.GetHashCode();
-      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -173,9 +173,9 @@ namespace Protobuf {
         output.WriteRawTag(18);
         output.WriteString(Password);
       }
-      if (Type.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Type);
+      if (Type != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Type);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -195,9 +195,9 @@ namespace Protobuf {
         output.WriteRawTag(18);
         output.WriteString(Password);
       }
-      if (Type.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Type);
+      if (Type != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Type);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -215,8 +215,8 @@ namespace Protobuf {
       if (Password.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
       }
-      if (Type.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -236,7 +236,7 @@ namespace Protobuf {
       if (other.Password.Length != 0) {
         Password = other.Password;
       }
-      if (other.Type.Length != 0) {
+      if (other.Type != 0) {
         Type = other.Type;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -262,8 +262,8 @@ namespace Protobuf {
             Password = input.ReadString();
             break;
           }
-          case 26: {
-            Type = input.ReadString();
+          case 24: {
+            Type = input.ReadInt32();
             break;
           }
         }
@@ -289,8 +289,8 @@ namespace Protobuf {
             Password = input.ReadString();
             break;
           }
-          case 26: {
-            Type = input.ReadString();
+          case 24: {
+            Type = input.ReadInt32();
             break;
           }
         }

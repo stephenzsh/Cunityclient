@@ -30,13 +30,13 @@ class MessagePack
         {
             return null;
         }
-        using (MemoryStream stream = new MemoryStream(data))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            Message msgdata = (Message)formatter.Deserialize(stream);
-            return msgdata;
-        }
 
+        Message msg = new Message();
+        msg.DataLen = BitConverter.ToUInt32(data, 0);
+        msg.ID = BitConverter.ToUInt32(data, 4);
+        msg.Data = new byte[msg.DataLen];
+        Array.Copy(data, 8, msg.Data, 0, msg.DataLen);
+        return msg;
     }
 }
 
