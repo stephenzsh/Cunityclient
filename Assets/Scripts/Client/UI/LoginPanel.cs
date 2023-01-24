@@ -20,7 +20,10 @@ public class LoginPanel : BasePanel
         }
         loginRequest.OnClick(user.text,password.text);
     }
-
+    public void SwitchPanel()
+    {
+        uIManager.PushPanel(PanelType.Register);
+    }
     // Update is called once per frame
     public override void OnEnter()
     {
@@ -44,6 +47,7 @@ public class LoginPanel : BasePanel
     {
         gameObject.SetActive(true);
         loginBtn.onClick.AddListener(OnLoginClick);
+        SignBtn.onClick.AddListener(SwitchPanel);
     }
     private void Exit()
     {

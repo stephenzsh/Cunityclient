@@ -14,6 +14,7 @@ public class UIManager : BaseManager
 
     private Transform canvasTransform;
 
+    private MessagePanel messagePanel;
     public override void OnInit()
     {
         base.OnInit();
@@ -25,7 +26,7 @@ public class UIManager : BaseManager
     /// 界面显示ui
     /// </summary>
     /// <param name="panelType"></param>
-    private void PushPanel(PanelType panelType)
+    public void PushPanel(PanelType panelType)
     {
 
         if (panelDict.TryGetValue(panelType, out BasePanel panel))
@@ -51,7 +52,7 @@ public class UIManager : BaseManager
         }
     }
 
-    private void PopPanel()
+    public void PopPanel()
     {
         if (panelStack.Count == 0) return;
         BasePanel topPanel = panelStack.Pop();
@@ -78,14 +79,26 @@ public class UIManager : BaseManager
     private void InitPanel()
     {
         string panelpath = "Panel/";
-        string[] path = new string[] { "LoginPanel", "FightPanel" };
+        string[] path = new string[] { "LoginPanel","RegisterPanel", "FightPanel" };
         panelPath.Add(PanelType.Login, panelpath + path[0]);
-        panelPath.Add(PanelType.Game, panelpath + path[1]);
+        panelPath.Add(PanelType.Register, panelpath + path[1]);
+        panelPath.Add(PanelType.Game, panelpath + path[2]);
 
     }
+    
 
     public override void OnDestroy()
     {
         base.OnDestroy();
+    }
+
+    public void SetMessagePanel(MessagePanel panel)
+    {
+        this.messagePanel = panel;
+    }
+
+    public void ShowMessage(string str,bool issync=false)
+    {
+        messagePanel.ShowMessage(str,issync);
     }
 }

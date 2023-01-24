@@ -64,7 +64,10 @@ public class GameFace : MonoBehaviour
     }
 
 
-
+    public void ShowMessage(string str,bool issync =false)
+    {
+        uIManager.ShowMessage(str,issync);
+    }
 
 
 }

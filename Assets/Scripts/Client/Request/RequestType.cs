@@ -3,8 +3,9 @@ using UnityEngine;
 
 public enum RequestType
 {
-    Start,
+   
     Login,
+    Register,
     Roomlist,
     Room,
     Game

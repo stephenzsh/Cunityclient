@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 public enum PanelType
 {
-    Start,
+   
     Login,
+    Register,
     Roomlist,
     Room,
     Game
