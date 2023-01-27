@@ -20,7 +20,9 @@ public class UIManager : BaseManager
         base.OnInit();
         InitPanel();
         canvasTransform = GameObject.Find("Canvas").transform;
+        PushPanel(PanelType.Message);
         PushPanel(PanelType.Login);
+        
     }
     /// <summary>
     /// 界面显示ui
@@ -79,10 +81,12 @@ public class UIManager : BaseManager
     private void InitPanel()
     {
         string panelpath = "Panel/";
-        string[] path = new string[] { "LoginPanel","RegisterPanel", "FightPanel" };
-        panelPath.Add(PanelType.Login, panelpath + path[0]);
-        panelPath.Add(PanelType.Register, panelpath + path[1]);
-        panelPath.Add(PanelType.Game, panelpath + path[2]);
+        string[] path = new string[] { "MessagePanel","LoginPanel","RegisterPanel", "FightPanel" };
+        panelPath.Add(PanelType.Message, panelpath + path[0]);
+        panelPath.Add(PanelType.Login, panelpath + path[1]);
+        panelPath.Add(PanelType.Register, panelpath + path[2]);
+        panelPath.Add(PanelType.Game, panelpath + path[3]);
+        
 
     }
     
@@ -94,7 +98,7 @@ public class UIManager : BaseManager
 
     public void SetMessagePanel(MessagePanel panel)
     {
-        this.messagePanel = panel;
+        messagePanel = panel;
     }
 
     public void ShowMessage(string str,bool issync=false)

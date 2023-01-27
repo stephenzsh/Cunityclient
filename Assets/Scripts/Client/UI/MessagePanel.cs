@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class MessagePanel:BasePanel
+public class MessagePanel : BasePanel
 {
     public Text text;
 
@@ -39,7 +40,7 @@ public class MessagePanel:BasePanel
             ShowText(message);
         }
     }
-    public void ShowText(string message) { 
+    private void ShowText(string message) { 
         text.text = message;
         text.CrossFadeAlpha(1, 0.1f, false);
         Invoke("HideText", 1);
@@ -49,6 +50,12 @@ public class MessagePanel:BasePanel
     public void HideText()
     {
         text.CrossFadeAlpha(0, 0.1f, false);
+    }
+
+    
+    public override void OnExit()
+    {
+        base.OnExit();
     }
 }
 

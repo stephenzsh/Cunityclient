@@ -1,3 +1,4 @@
+using Protobuf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ public class LoginPanel : BasePanel
     }
     public void SwitchPanel()
     {
+        
         uIManager.PushPanel(PanelType.Register);
     }
     // Update is called once per frame
@@ -38,10 +40,12 @@ public class LoginPanel : BasePanel
     public override void OnRecovery()
     {
         base.OnRecovery();
+        Enter();
     }
     public override void OnPause()
     {
         base.OnPause();
+        Exit();
     }
     private void Enter()
     {
@@ -53,5 +57,11 @@ public class LoginPanel : BasePanel
     {
         gameObject.SetActive(false);
 
+    }
+
+    public void OnResponse(Message msg)
+    {
+        uIManager.PushPanel(PanelType.Roomlist);
+        RoomListMessage obj = RoomListMessage.Parser.ParseFrom(msg.Data);
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 public class LoginRequest : BaseRequest
 {
 
-    public LoginRequest request;
+    public LoginPanel loginPanel;
 
     public override void Awake()
     {
@@ -54,8 +54,8 @@ public class LoginRequest : BaseRequest
     public override void OnResponse(Message msg)
     {
 
-        face.ShowMessage("登录成功");
-        RoomListMessage obj = RoomListMessage.Parser.ParseFrom(msg.Data);
-        
+        loginPanel.OnResponse(msg);
+       
+
     }
 }

@@ -43,6 +43,7 @@ public class ClientManager : BaseManager
         catch (Exception e)
         {
             Debug.Log(e);
+            face.ShowMessage("服务器连接失败");
         }
     }
 

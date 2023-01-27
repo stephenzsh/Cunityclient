@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 public class RegisterRequest:BaseRequest
     {
+
+    public RegisterPanel registerPanel;
+
     public override void Awake()
     {
         base.Awake();
@@ -53,12 +56,7 @@ public class RegisterRequest:BaseRequest
     }
     public override void OnResponse(Message msg)
     {
-
-        face.ShowMessage("注册成功");
-        //TODO跳转到登录页
-
-        RoomListMessage obj = RoomListMessage.Parser.ParseFrom(msg.Data);
-
+        registerPanel.OnResponse(msg);
     }
 }
 

@@ -1,3 +1,4 @@
+using Protobuf;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +11,18 @@ public class RegisterPanel : BasePanel
     public Button loginBtn;
     public Button SignBtn;
 
-    public RegisterRequest loginRequest;
+    public RegisterRequest registerRequest;
     public void OnLoginClick()
     {
         if (user.text == "" || password.text == "")
         {
             Debug.Log("用户名密码不能为空");
         }
-        loginRequest.OnClick(user.text, password.text);
+        registerRequest.OnClick(user.text, password.text);
     }
     public void SwitchPanel()
     {
+
         uIManager.PopPanel();
     }
     // Update is called once per frame
@@ -37,20 +39,29 @@ public class RegisterPanel : BasePanel
     public override void OnRecovery()
     {
         base.OnRecovery();
+        Enter();
     }
     public override void OnPause()
     {
         base.OnPause();
+        Exit();
     }
     private void Enter()
     {
         gameObject.SetActive(true);
-        loginBtn.onClick.AddListener(OnLoginClick);
-        SignBtn.onClick.AddListener(SwitchPanel);
+        SignBtn.onClick.AddListener(OnLoginClick);
+        loginBtn.onClick.AddListener(SwitchPanel);
     }
     private void Exit()
     {
         gameObject.SetActive(false);
 
+    }
+
+    public void OnResponse(Message msg)
+    {
+        uIManager.ShowMessage("登陆成功");
+        uIManager.PushPanel(PanelType.Login);
+        
     }
 }

@@ -17,7 +17,7 @@ public class BasePanel :MonoBehaviour
     }
     public virtual void OnEnter()
     {
-
+       
     }
 
     public virtual void OnExit()
