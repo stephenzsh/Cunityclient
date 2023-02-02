@@ -29,20 +29,23 @@ public class GameFace : MonoBehaviour
 
     void Awake()
     {
-        uIManager = new UIManager(this);
+
         requestManager = new RequestManager(this);
-        clientManager = new ClientManager(this);
-        uIManager.OnInit();
         requestManager.OnInit();
+
+        uIManager = new UIManager(this);
+        uIManager.OnInit();
+        
+        clientManager = new ClientManager(this);
         clientManager.OnInit();
     }
     
 
     private void OnDestroy()
     {
+        clientManager.OnDestroy();
         uIManager.OnDestroy();
         requestManager.OnDestroy();
-        clientManager.OnDestroy();
     }
 
     public void Send(Message msg)

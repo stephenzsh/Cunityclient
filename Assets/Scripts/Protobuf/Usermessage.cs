@@ -24,13 +24,13 @@ namespace Protobuf {
     static UsermessageReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChF1c2VybWVzc2FnZS5wcm90bxIIcHJvdG9idWYiPgoLVXNlck1lc3NhZ2US",
+            "ChF1c2VybWVzc2FnZS5wcm90bxIIcHJvdG9idWYiSwoLVXNlck1lc3NhZ2US",
             "DwoHb3BlcmF0ZRgBIAEoCRIMCgRmbGFnGAUgASgIEhAKCHJvb21uYW1lGAcg",
-            "ASgJQg1aCy4vO3Byb3RvYnVmYgZwcm90bzM="));
+            "ASgJEgsKA251bRgCIAEoDUINWgsuLztwcm90b2J1ZmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.UserMessage), global::Protobuf.UserMessage.Parser, new[]{ "Operate", "Flag", "Roomname" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protobuf.UserMessage), global::Protobuf.UserMessage.Parser, new[]{ "Operate", "Flag", "Roomname", "Num" }, null, null, null, null)
           }));
     }
     #endregion
@@ -74,6 +74,7 @@ namespace Protobuf {
       operate_ = other.operate_;
       flag_ = other.flag_;
       roomname_ = other.roomname_;
+      num_ = other.num_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -119,6 +120,18 @@ namespace Protobuf {
       }
     }
 
+    /// <summary>Field number for the "num" field.</summary>
+    public const int NumFieldNumber = 2;
+    private uint num_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Num {
+      get { return num_; }
+      set {
+        num_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -137,6 +150,7 @@ namespace Protobuf {
       if (Operate != other.Operate) return false;
       if (Flag != other.Flag) return false;
       if (Roomname != other.Roomname) return false;
+      if (Num != other.Num) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -147,6 +161,7 @@ namespace Protobuf {
       if (Operate.Length != 0) hash ^= Operate.GetHashCode();
       if (Flag != false) hash ^= Flag.GetHashCode();
       if (Roomname.Length != 0) hash ^= Roomname.GetHashCode();
+      if (Num != 0) hash ^= Num.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -169,6 +184,10 @@ namespace Protobuf {
         output.WriteRawTag(10);
         output.WriteString(Operate);
       }
+      if (Num != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Num);
+      }
       if (Flag != false) {
         output.WriteRawTag(40);
         output.WriteBool(Flag);
@@ -190,6 +209,10 @@ namespace Protobuf {
       if (Operate.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Operate);
+      }
+      if (Num != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Num);
       }
       if (Flag != false) {
         output.WriteRawTag(40);
@@ -218,6 +241,9 @@ namespace Protobuf {
       if (Roomname.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Roomname);
       }
+      if (Num != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Num);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -239,6 +265,9 @@ namespace Protobuf {
       if (other.Roomname.Length != 0) {
         Roomname = other.Roomname;
       }
+      if (other.Num != 0) {
+        Num = other.Num;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -256,6 +285,10 @@ namespace Protobuf {
             break;
           case 10: {
             Operate = input.ReadString();
+            break;
+          }
+          case 16: {
+            Num = input.ReadUInt32();
             break;
           }
           case 40: {
@@ -283,6 +316,10 @@ namespace Protobuf {
             break;
           case 10: {
             Operate = input.ReadString();
+            break;
+          }
+          case 16: {
+            Num = input.ReadUInt32();
             break;
           }
           case 40: {

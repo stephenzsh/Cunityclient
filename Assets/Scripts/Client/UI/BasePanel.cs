@@ -33,10 +33,7 @@ public class BasePanel :MonoBehaviour
     {
 
     }
-    private void Awake()
-    {
-        OnEnter();
-    }
+    
 
 }
 

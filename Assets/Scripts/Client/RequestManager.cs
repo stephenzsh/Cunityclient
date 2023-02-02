@@ -15,7 +15,14 @@ public class RequestManager : BaseManager
 
     public void AddRequest(BaseRequest request,RequestType type)
     {
-        requestDict.Add(type, request);
+        if (requestDict.TryGetValue(type, out BaseRequest baserequest))
+        {
+            return;
+        } else
+        {
+            requestDict.Add(type, request);
+        }
+            
     }
 
     public void RemoveRequest(RequestType type)
@@ -27,6 +34,7 @@ public class RequestManager : BaseManager
         
         if (requestDict.TryGetValue(type, out BaseRequest request))
         {
+            
             request.OnResponse(msg);
         }
         else

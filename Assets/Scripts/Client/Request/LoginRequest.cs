@@ -11,12 +11,27 @@ public class LoginRequest : BaseRequest
 
     public LoginPanel loginPanel;
 
+    private Message msg;
+
+    private void Update()
+    {
+        if (msg != null)
+        {
+            loginPanel.OnResponse(msg);
+            msg = null;
+        }
+    }
+
     public override void Awake()
     {
-        base.Awake();
+        
+        base.Awake(); 
         face.AddRequest(this,RequestType.Login);
-        //request = new LoginRequest();
+        
     }
+
+   
+
     public override void OnDestroy()
     {
         base.OnDestroy();
@@ -27,8 +42,8 @@ public class LoginRequest : BaseRequest
     
     public void OnClick(string user, string password)
     {
-        
 
+        //Debug.Log("LoginRequest Onclick");
         LoginMessage loginmessage = new LoginMessage()
         {
           
@@ -54,7 +69,7 @@ public class LoginRequest : BaseRequest
     public override void OnResponse(Message msg)
     {
 
-        loginPanel.OnResponse(msg);
+        this.msg = msg;
        
 
     }

@@ -40,7 +40,7 @@ public class MessagePanel : BasePanel
             ShowText(message);
         }
     }
-    private void ShowText(string message) { 
+    private void ShowText(string message) {
         text.text = message;
         text.CrossFadeAlpha(1, 0.1f, false);
         Invoke("HideText", 1);
@@ -53,9 +53,6 @@ public class MessagePanel : BasePanel
     }
 
     
-    public override void OnExit()
-    {
-        base.OnExit();
-    }
+  
 }
 

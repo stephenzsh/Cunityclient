@@ -17,7 +17,8 @@ public class LoginPanel : BasePanel
     {
         if (user.text == ""|| password.text == "")
         {
-            Debug.Log("用户名密码不能为空");
+            uIManager.ShowMessage("用户名密码不能为空");
+            return;
         }
         loginRequest.OnClick(user.text,password.text);
     }
@@ -26,7 +27,7 @@ public class LoginPanel : BasePanel
         
         uIManager.PushPanel(PanelType.Register);
     }
-    // Update is called once per frame
+    
     public override void OnEnter()
     {
         base.OnEnter();
@@ -49,9 +50,9 @@ public class LoginPanel : BasePanel
     }
     private void Enter()
     {
+        
         gameObject.SetActive(true);
-        loginBtn.onClick.AddListener(OnLoginClick);
-        SignBtn.onClick.AddListener(SwitchPanel);
+        
     }
     private void Exit()
     {
@@ -62,6 +63,13 @@ public class LoginPanel : BasePanel
     public void OnResponse(Message msg)
     {
         uIManager.PushPanel(PanelType.Roomlist);
-        RoomListMessage obj = RoomListMessage.Parser.ParseFrom(msg.Data);
+       
+           
+    }
+
+    private void Start()
+    {
+        loginBtn.onClick.AddListener(OnLoginClick);
+        SignBtn.onClick.AddListener(SwitchPanel);
     }
 }

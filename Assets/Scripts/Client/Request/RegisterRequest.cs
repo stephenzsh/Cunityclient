@@ -5,18 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UnityEngine;
 
 public class RegisterRequest:BaseRequest
     {
 
     public RegisterPanel registerPanel;
 
+    private Message msg;
+
+    private void Update()
+    {
+        if (msg != null)
+        {
+            registerPanel.OnResponse(msg);
+            msg = null;
+        }
+    }
+
     public override void Awake()
     {
         base.Awake();
         face.AddRequest(this, RequestType.Register);
-        //request = new LoginRequest();
     }
     public override void OnDestroy()
     {
@@ -56,7 +66,8 @@ public class RegisterRequest:BaseRequest
     }
     public override void OnResponse(Message msg)
     {
-        registerPanel.OnResponse(msg);
+        this.msg = msg;
+       
     }
 }
 

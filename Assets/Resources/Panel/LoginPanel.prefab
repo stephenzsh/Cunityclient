@@ -79,50 +79,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u5BC6\u7801"
---- !u!1 &918474866966867127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1812513726989642425}
-  - component: {fileID: 6617903780426989877}
-  m_Layer: 0
-  m_Name: LoginRequest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1812513726989642425
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918474866966867127}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.486237, y: -11.114487, z: -9.415091}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7429097615459601694}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6617903780426989877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918474866966867127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d52aafb70fcc7e42808a6cddfb54a02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  request: {fileID: 0}
 --- !u!1 &1442909958578262341
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +249,7 @@ GameObject:
   - component: {fileID: 1729673592946471083}
   - component: {fileID: 6122368132077236739}
   - component: {fileID: 8139227529633519885}
+  - component: {fileID: 6106422959552433122}
   m_Layer: 5
   m_Name: LoginPanel
   m_TagString: Untagged
@@ -315,7 +272,6 @@ RectTransform:
   - {fileID: 6236632846721564405}
   - {fileID: 7257823909162340195}
   - {fileID: 7388273605341172761}
-  - {fileID: 1812513726989642425}
   - {fileID: 7429097616009798720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -379,7 +335,20 @@ MonoBehaviour:
   password: {fileID: 7927178571744901199}
   loginBtn: {fileID: 952083142850326038}
   SignBtn: {fileID: 4902242734303088686}
-  loginRequest: {fileID: 6617903780426989877}
+  loginRequest: {fileID: 6106422959552433122}
+--- !u!114 &6106422959552433122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220812775284294705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d52aafb70fcc7e42808a6cddfb54a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginPanel: {fileID: 8139227529633519885}
 --- !u!1 &5132654354811508254
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +801,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7429097615459601694}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

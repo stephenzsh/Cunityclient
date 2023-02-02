@@ -3217,7 +3217,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3676150640848543381}
   - component: {fileID: 3676150640848543380}
-  - component: {fileID: 3676150640848543383}
   m_Layer: 0
   m_Name: BG1
   m_TagString: Untagged
@@ -3290,18 +3289,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3676150640848543383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3676150640848543378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5faf2f68f4e0e54cb62bc9bd5867622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3676150640868819325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3393,6 +3380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4409833212068871126}
+  - component: {fileID: 6976666713934020733}
   m_Layer: 0
   m_Name: FightPanel
   m_TagString: Untagged
@@ -3418,6 +3406,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6976666713934020733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809920286819719956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa26357bcf10c044eb983fbc41a55a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3676150641177272009
 PrefabInstance:
   m_ObjectHideFlags: 0

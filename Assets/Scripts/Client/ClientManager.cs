@@ -54,6 +54,7 @@ public class ClientManager : BaseManager
 
     private void ReceiveCallback(IAsyncResult ar)
     {
+
         int bytesReceived = socket.EndReceive(ar);
         if (bytesReceived > 0)
         {

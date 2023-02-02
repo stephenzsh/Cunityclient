@@ -15,6 +15,7 @@ public class UIManager : BaseManager
     private Transform canvasTransform;
 
     private MessagePanel messagePanel;
+    
     public override void OnInit()
     {
         base.OnInit();
@@ -34,9 +35,9 @@ public class UIManager : BaseManager
         if (panelDict.TryGetValue(panelType, out BasePanel panel))
         {
             if (panelStack.Count > 0)
-            {
-                BasePanel topPanel = panelStack.Peek();
-                topPanel.OnPause();
+            {                   
+                    BasePanel topPanel = panelStack.Peek();       
+                    topPanel.OnPause();
             }
             panelStack.Push(panel);
             panel.OnEnter();
@@ -49,6 +50,7 @@ public class UIManager : BaseManager
                 BasePanel topPanel = panelStack.Peek();
                 topPanel.OnPause();
             }
+           
             panelStack.Push(panel1);
             panel1.OnEnter();
         }
@@ -57,14 +59,17 @@ public class UIManager : BaseManager
     public void PopPanel()
     {
         if (panelStack.Count == 0) return;
+        
         BasePanel topPanel = panelStack.Pop();
         topPanel.OnExit();
+        
         BasePanel panel = panelStack.Peek();
         panel.OnRecovery();
     }
 
-    private BasePanel SpawnPanel(PanelType panelType)
+    public BasePanel SpawnPanel(PanelType panelType)
     {
+       
         if (panelPath.TryGetValue(panelType, out string path))
         {
             GameObject g = GameObject.Instantiate(Resources.Load(path)) as GameObject;
@@ -73,26 +78,29 @@ public class UIManager : BaseManager
             gpanel.SetUIMag = this;
             panelDict.Add(panelType, gpanel);
             return gpanel;
+        } else {
+            return null;
         }
-        return null;
+        
     }
 
 
     private void InitPanel()
     {
         string panelpath = "Panel/";
-        string[] path = new string[] { "MessagePanel","LoginPanel","RegisterPanel", "FightPanel" };
+        string[] path = new string[] { "MessagePanel","LoginPanel","RegisterPanel", "RoomlistPanel", "RoomPanel", "FightPanel" };
         panelPath.Add(PanelType.Message, panelpath + path[0]);
         panelPath.Add(PanelType.Login, panelpath + path[1]);
         panelPath.Add(PanelType.Register, panelpath + path[2]);
-        panelPath.Add(PanelType.Game, panelpath + path[3]);
-        
+        panelPath.Add(PanelType.Roomlist, panelpath + path[3]);
+        panelPath.Add(PanelType.Room, panelpath + path[4]);
+        panelPath.Add(PanelType.Game, panelpath + path[5]);
 
     }
     
 
     public override void OnDestroy()
-    {
+    { 
         base.OnDestroy();
     }
 
@@ -101,8 +109,11 @@ public class UIManager : BaseManager
         messagePanel = panel;
     }
 
+ 
+
     public void ShowMessage(string str,bool issync=false)
     {
+       
         messagePanel.ShowMessage(str,issync);
     }
 }

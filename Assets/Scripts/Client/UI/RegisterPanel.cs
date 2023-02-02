@@ -25,7 +25,7 @@ public class RegisterPanel : BasePanel
 
         uIManager.PopPanel();
     }
-    // Update is called once per frame
+   
     public override void OnEnter()
     {
         base.OnEnter();
@@ -49,19 +49,22 @@ public class RegisterPanel : BasePanel
     private void Enter()
     {
         gameObject.SetActive(true);
-        SignBtn.onClick.AddListener(OnLoginClick);
-        loginBtn.onClick.AddListener(SwitchPanel);
+        
     }
     private void Exit()
     {
+        
         gameObject.SetActive(false);
 
     }
-
+    private void Start()
+    {
+        SignBtn.onClick.AddListener(OnLoginClick);
+        loginBtn.onClick.AddListener(SwitchPanel);
+    }
     public void OnResponse(Message msg)
     {
-        uIManager.ShowMessage("登陆成功");
+        uIManager.ShowMessage("注册成功");
         uIManager.PushPanel(PanelType.Login);
-        
     }
 }
