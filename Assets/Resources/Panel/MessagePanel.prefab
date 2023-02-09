@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 2058188348437524359}
   - component: {fileID: 6561667517585730800}
   - component: {fileID: 1322960324000831484}
-  - component: {fileID: 2579386332150966729}
+  - component: {fileID: 5000010900246214047}
   m_Layer: 5
   m_Name: MessagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2058188348437524359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.327, y: -26.1137}
+  m_AnchoredPosition: {x: 1.327, y: -26.113708}
   m_SizeDelta: {x: 235.3558, y: 52.2274}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6561667517585730800
@@ -80,7 +80,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &2579386332150966729
+--- !u!114 &5000010900246214047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2064158787736860665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fddd9b73a07f284786aa0e046bf1d77, type: 3}
+  m_Script: {fileID: 11500000, guid: 71dc898f178e4c740bcaccd1b7de668d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1322960324000831484}

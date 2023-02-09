@@ -248,8 +248,8 @@ GameObject:
   - component: {fileID: 7429097615459601694}
   - component: {fileID: 1729673592946471083}
   - component: {fileID: 6122368132077236739}
-  - component: {fileID: 8139227529633519885}
-  - component: {fileID: 6106422959552433122}
+  - component: {fileID: 204396591347694440}
+  - component: {fileID: 3923878524298157670}
   m_Layer: 5
   m_Name: LoginPanel
   m_TagString: Untagged
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8139227529633519885
+--- !u!114 &204396591347694440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -328,15 +328,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4220812775284294705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e657e72458c4d846a43be9c305d93a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b99abb271ba72d44a8a6a7431df91cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 4863132639003913344}
   password: {fileID: 7927178571744901199}
   loginBtn: {fileID: 952083142850326038}
   SignBtn: {fileID: 4902242734303088686}
-  loginRequest: {fileID: 6106422959552433122}
---- !u!114 &6106422959552433122
+  loginRequest: {fileID: 3923878524298157670}
+--- !u!114 &3923878524298157670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,10 +345,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4220812775284294705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d52aafb70fcc7e42808a6cddfb54a02, type: 3}
+  m_Script: {fileID: 11500000, guid: aa6037dc4140dba4fbcd0149ae773c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginPanel: {fileID: 8139227529633519885}
+  loginPanel: {fileID: 204396591347694440}
 --- !u!1 &5132654354811508254
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 261, y: -136}
+  m_AnchoredPosition: {x: 251, y: -123}
   m_SizeDelta: {x: 92, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5032005268378821567

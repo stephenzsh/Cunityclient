@@ -29,7 +29,7 @@ public class UIManager : BaseManager
     /// 界面显示ui
     /// </summary>
     /// <param name="panelType"></param>
-    public void PushPanel(PanelType panelType)
+    public BasePanel PushPanel(PanelType panelType)
     {
 
         if (panelDict.TryGetValue(panelType, out BasePanel panel))
@@ -41,6 +41,8 @@ public class UIManager : BaseManager
             }
             panelStack.Push(panel);
             panel.OnEnter();
+        
+            return panel;
         }
         else
         {
@@ -53,6 +55,8 @@ public class UIManager : BaseManager
            
             panelStack.Push(panel1);
             panel1.OnEnter();
+           
+            return panel1;
         }
     }
 

@@ -1,22 +1,29 @@
 ﻿using Google.Protobuf;
 using Protobuf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 public class RoomRequest :BaseRequest
 {
     const string Add = "add";
     const string Enter = "enter";
-    public RoomPanel panel;
+    
+    public RoomListPanel panel;
     private Message msg;
     private void Update()
     {
         if (msg != null)
         {
-            panel.OnResponse(msg);
+            GameMessage obj = GameMessage.Parser.ParseFrom(msg.Data);
+            switch (obj.ActionCode){
+                case ActionCode.EnterRoom:
+                    panel.JoinRoomResponse(msg);
+                    break;
+                case ActionCode.ExitRoom:
+                    panel.ExitRoomResponse();
+                    break;
+            }
+            
             msg = null;
         }
     }
@@ -31,7 +38,7 @@ public class RoomRequest :BaseRequest
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Register);
+        face.RemoveRequest(RequestType.Room);
     }
     public override void SendRequest(Message msg)
     {
@@ -40,7 +47,6 @@ public class RoomRequest :BaseRequest
     }
     public override void OnResponse(Message msg)
     {
-
         this.msg = msg;
     }
 
@@ -75,6 +81,7 @@ public class RoomRequest :BaseRequest
         msg.DataLen = (uint)loginmessage.ToByteArray().Length;
         SendRequest(msg);
     }
-
+   
+   
 }
 

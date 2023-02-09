@@ -24,7 +24,7 @@ public class RoomlistRequest : BaseRequest
         }
     }
 
-
+    
     public override void Awake()
     {
         base.Awake();
@@ -34,7 +34,7 @@ public class RoomlistRequest : BaseRequest
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Register);
+        face.RemoveRequest(RequestType.Roomlist);
     }
     public override void SendRequest(Message msg)
     {

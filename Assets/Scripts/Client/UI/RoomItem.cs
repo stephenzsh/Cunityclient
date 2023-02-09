@@ -7,6 +7,9 @@ public class RoomItem : MonoBehaviour
 {
     public Button join;
     public Text title, num, status;
+
+
+    public RoomListPanel roomListPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,10 @@ public class RoomItem : MonoBehaviour
     }
     public void OnJoinClick()
     {
-
+        roomListPanel.EnterRoom(this.title.text);
     }
+
+
     public void SetRoomInfo(string title,int curnum,int maxnum ,bool status)
     {
         this.title.text = title;

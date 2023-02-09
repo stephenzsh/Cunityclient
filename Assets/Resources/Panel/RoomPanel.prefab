@@ -352,15 +352,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7950517270948540200}
-  - component: {fileID: 6684619167616841395}
-  - component: {fileID: 5079865236114173383}
+  - component: {fileID: 2043972425}
+  - component: {fileID: 2043972427}
   m_Layer: 5
   m_Name: RoomPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7950517270948540200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00025177}
   m_SizeDelta: {x: 785, y: 378}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6684619167616841395
+--- !u!114 &2043972425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,25 +391,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 7950517270948540203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2c830d85a73959428d252584835f792, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f781b6dd54590b478efcf4efea60192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2043972427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950517270948540203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1e4025146c90c4da0ee89f36a366aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomname: 
   exitButton: {fileID: 7950517271015450411}
-  sendButton: {fileID: 7950517272161296170}
   startButton: {fileID: 8058394515279582944}
---- !u!114 &5079865236114173383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950517270948540203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943b8bf1111c4fc43b2a15f6f5729f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 6684619167616841395}
+  sendButton: {fileID: 7950517272161296170}
+  inputtext: {fileID: 7950517270886312210}
+  content: {fileID: 7950517271489148178}
+  scrollbar: {fileID: 7950517272052839991}
+  useritemobj: {fileID: 6087431625228426149, guid: ca18452bb0b47b042ab15c863f330e88, type: 3}
+  exitRequest: {fileID: 2043972425}
 --- !u!1 &7950517270957516732
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +727,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 2.038498}
   m_SizeDelta: {x: 20, y: 15.9231}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1386,7 +1391,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -96, y: 0}
+  m_SizeDelta: {x: -96, y: 14.138439}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7950517272197995067
 CanvasRenderer:

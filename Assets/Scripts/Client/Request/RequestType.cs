@@ -8,5 +8,6 @@ public enum RequestType
     Register,
     Roomlist,
     Room,
+    ExitRoom,
     Game
 }
