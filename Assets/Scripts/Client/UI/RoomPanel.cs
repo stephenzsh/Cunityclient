@@ -1,5 +1,6 @@
 ﻿
 using Protobuf;
+using Google.Protobuf.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,23 +19,32 @@ public class RoomPanel : BasePanel
 
     public RoomExitRequest exitRequest;
 
+    public RoomRequest roomRequest;
+
+
+    public void GetPlayers()
+    {
+        Debug.Log(this.roomname);
+        roomRequest.GetPlayerList(this.roomname);
+    }
+
     private void Start()
     {
         exitButton.onClick.AddListener(ExitRoomClick);
         sendButton.onClick.AddListener(SendClick);
         startButton.onClick.AddListener(StartGameClick);
     }
-    public void UpdatePlayerList(RoomMessage msg)
+    public void UpdatePlayerList(RepeatedField<Player> msg)
     {
         for (int i = 0; i < content.childCount; i++)
         {
             Destroy(content.GetChild(i).gameObject);
 
         }
-        foreach (string player  in msg.Players.Keys) {
+        foreach (Player player  in msg) {
             UserItem useritem = Instantiate(useritemobj, Vector3.zero, Quaternion.identity).GetComponent<UserItem>();
             useritem.gameObject.transform.SetParent(content);
-            useritem.SetPlayerName(player);
+            useritem.SetPlayerName(player.Name);
         }
     }
     private void SendClick()
@@ -47,7 +57,6 @@ public class RoomPanel : BasePanel
     }
     private void ExitRoomClick()
     {
-        Debug.Log("exitroomname == " + this.roomname);
         exitRequest.ExitRoom(this.roomname);
         uIManager.PopPanel();
     }
@@ -75,17 +84,16 @@ public class RoomPanel : BasePanel
     {
 
         gameObject.SetActive(true);
-
+        
     }
     private void Exit()
     {
         gameObject.SetActive(false);
 
     }
-
-    public void OnResponse(Message msg)
+    public void FailResponse(string msg)
     {
-        
+        uIManager.ShowMessage(msg);
     }
 }
 

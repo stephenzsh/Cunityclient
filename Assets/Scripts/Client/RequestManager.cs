@@ -39,6 +39,7 @@ public class RequestManager : BaseManager
         }
         else
         {
+            
             Debug.Log(" 不能处理error");
         }
     }

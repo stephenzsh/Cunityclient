@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 13.70932}
-  m_SizeDelta: {x: 10, y: 27.418602}
+  m_AnchoredPosition: {x: 0, y: 25.858}
+  m_SizeDelta: {x: 0, y: 51.717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6952222567395291296
 CanvasRenderer:
@@ -67,10 +67,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -116,10 +116,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -338, y: -190}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 229.01196, y: -76.77105}
+  m_SizeDelta: {x: -458.0239, y: -153.5421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6952222567658752773
 CanvasRenderer:
@@ -180,8 +180,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.9811321, g: 0.9765041, b: 0.9765041, a: 1}
+    m_HighlightedColor: {r: 0.9339623, g: 0.8943129, b: 0.8943129, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -219,7 +219,7 @@ MonoBehaviour:
   title: {fileID: 6952222568131890701}
   num: {fileID: 6952222568511335257}
   status: {fileID: 6952222567395291311}
-  roomListPanel: {fileID: 802212011, guid: 55cd17bc95b67e2458a0a56bb31f110d, type: 3}
+  roomListPanel: {fileID: 207078263579761117, guid: 55cd17bc95b67e2458a0a56bb31f110d, type: 3}
 --- !u!1 &6952222568131890699
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,8 +254,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12.964294}
-  m_SizeDelta: {x: 160, y: 25.9286}
+  m_AnchoredPosition: {x: 0, y: -15.403595}
+  m_SizeDelta: {x: 677, y: 24.0122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6952222568131890702
 CanvasRenderer:
@@ -333,8 +333,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 30}
+  m_AnchoredPosition: {x: 0, y: 26.140617}
+  m_SizeDelta: {x: 0, y: 47.0248}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6952222568511335258
 CanvasRenderer:
@@ -366,10 +366,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0

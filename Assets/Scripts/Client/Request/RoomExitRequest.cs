@@ -16,11 +16,11 @@ public class RoomExitRequest :BaseRequest
     public void ExitRoom(string roomName)
     {
         Debug.Log(roomName);
-        UserMessage loginmessage = new UserMessage()
+        GameMessage loginmessage = new GameMessage()
         {
 
-            Operate = Exit,
-            Roomname = roomName,
+            ActionCode = ActionCode.ExitRoom,
+            Msg = roomName,
 
         };
         Message msg = new Message();

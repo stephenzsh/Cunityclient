@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 public class RoomlistRequest : BaseRequest
 {
-    
+    const string Add = "add";
+    const string Enter = "enter";
 
     private Message msg;
 
@@ -49,9 +50,10 @@ public class RoomlistRequest : BaseRequest
 
     public void SearchRoom(string roomName)
     {
-        RoomMessage message = new RoomMessage()
+        GameMessage message = new GameMessage()
         {
-            Name = roomName,
+            ActionCode = ActionCode.SearchRoom,
+            Msg = roomName
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
@@ -60,6 +62,34 @@ public class RoomlistRequest : BaseRequest
         SendRequest(msg);
     }
 
+    public void CreateRoom(string roomName, int num)
+    {
+        GameMessage message = new GameMessage()
+        {
+            ActionCode = ActionCode.CreateRoom,
+            Msg = roomName
+        };
+        Message msg = new Message();
+        msg.Data = message.ToByteArray();
+        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Roomlist);
+        msg.DataLen = (uint)message.ToByteArray().Length;
+        SendRequest(msg);
+    }
+
+    public void EnterRoom(string roomName)
+    {
+
+        GameMessage message = new GameMessage()
+        {
+            ActionCode = ActionCode.EnterRoom,
+            Msg = roomName
+        };
+        Message msg = new Message();
+        msg.Data = message.ToByteArray();
+        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Roomlist);
+        msg.DataLen = (uint)message.ToByteArray().Length;
+        SendRequest(msg);
+    }
 
 
 }

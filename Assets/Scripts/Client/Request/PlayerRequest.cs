@@ -1,18 +1,28 @@
+using Protobuf;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRequest : MonoBehaviour
+public class PlayerRequest : BaseRequest
 {
-    // Start is called before the first frame update
-    void Start()
+    public RoomPanel panel;
+
+   
+
+    public override void Awake()
     {
-        
+        base.Awake();
+        face.AddRequest(this,RequestType.PlayerList);
+    }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        face.RemoveRequest(RequestType.PlayerList);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnResponse(Message msg)
     {
-        
+        GameMessage obj = GameMessage.Parser.ParseFrom(msg.Data);
+        panel.UpdatePlayerList(obj.Players);
     }
 }

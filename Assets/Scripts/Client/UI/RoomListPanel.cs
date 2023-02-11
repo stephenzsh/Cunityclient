@@ -15,7 +15,6 @@ public class RoomListPanel : BasePanel
     public Transform roomlistTransform;
     public GameObject roomitem;
     public RoomlistRequest roomlistRequest;
-    public RoomRequest roomRequest;
 
     private void Start()
     {
@@ -45,17 +44,18 @@ public class RoomListPanel : BasePanel
             uIManager.ShowMessage("请选择人数");
             return;
         }
-        roomRequest.CreateRoom(roomName.text, (int)num.value);
+        roomlistRequest.CreateRoom(roomName.text, (int)num.value);
         
     }
     public void EnterRoom(string name)
     {
+        
         if (name == null )
         {
             uIManager.ShowMessage("请输入房间名");
             return;
         }
-        roomRequest.EnterRoom(name);
+        roomlistRequest.EnterRoom(name);
     }
    
     private void LogOut() {
@@ -108,7 +108,7 @@ public class RoomListPanel : BasePanel
             Destroy(roomlistTransform.GetChild(i).gameObject);
             
         }
-        Debug.Log(list.Roomlist);
+        
         foreach (RoomMessage room in list.Roomlist)
         {
             RoomItem item = Instantiate(roomitem,Vector3.zero, Quaternion.identity).GetComponent<RoomItem>();
@@ -121,19 +121,36 @@ public class RoomListPanel : BasePanel
     public void OnResponse(Message msg)
     {
         GameMessage obj = GameMessage.Parser.ParseFrom(msg.Data);
-        UpdateRoom(obj);
+        if (obj.ReturnCode == ReturnCode.Fail)
+        {
+            uIManager.ShowMessage(obj.Msg);
+            return;
+        }
+        switch (obj.ActionCode)
+        {
+            case ActionCode.SearchRoom:
+                UpdateRoom(obj);
+                break;
+            case ActionCode.EnterRoom:
+
+                RoomResponse(obj);
+                break;
+            case ActionCode.CreateRoom:
+                RoomResponse(obj);
+                break;
+        }
+        
     }
 
-    public void JoinRoomResponse(Message msg)
+    public void RoomResponse(GameMessage msg)
     {
-        RoomPanel roompanel = (RoomPanel)uIManager.PushPanel(PanelType.Room);
-        GameMessage obj = GameMessage.Parser.ParseFrom(msg.Data);
-        
-        roompanel.roomname = obj.Roomlist[0].Name;
+        RoomPanel panel = (RoomPanel)uIManager.PushPanel(PanelType.Room);
+        Debug.Log(msg.Msg);
+        panel.roomname = msg.Msg;
+
+        panel.GetPlayers();
     }
-    public void ExitRoomResponse()
-    {
-        uIManager.PopPanel();
-    }
+  
+
 }
 

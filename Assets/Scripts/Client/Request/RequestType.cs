@@ -9,5 +9,6 @@ public enum RequestType
     Roomlist,
     Room,
     ExitRoom,
+    PlayerList,
     Game
 }
