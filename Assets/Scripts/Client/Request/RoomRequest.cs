@@ -18,7 +18,19 @@ public class RoomRequest :BaseRequest
             if (obj.ReturnCode == ReturnCode.Fail) {
                 panel.FailResponse(obj.Msg);
             }
-            panel.UpdatePlayerList(obj.Players);
+            switch (obj.ActionCode){
+                case ActionCode.PlayerList:
+                    panel.UpdatePlayerList(obj.Players);
+                    break;
+                case ActionCode.Chat:
+                    panel.UpdateChat(obj.Roomlist[0]);
+                    break;
+                case ActionCode.CheckStatus:
+                    panel.CheckStatus();
+                    break;
+                
+            }
+           
             msg = null;
         }
     }
@@ -58,6 +70,38 @@ public class RoomRequest :BaseRequest
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }
-   
+    public void SendMsg(string roomname ,string text)
+    {
+        RoomMessage room = new RoomMessage()
+        {
+            Name = roomname
+        };
+        GameMessage message = new GameMessage()
+        {
+            ActionCode = ActionCode.Chat,
+            Msg = text,
+        };
+        message.Roomlist.Add(room);
+        Message msg = new Message();
+        msg.Data = message.ToByteArray();
+        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Room);
+        msg.DataLen = (uint)message.ToByteArray().Length;
+        SendRequest(msg);
+
+    }
+
+    public void StartGame(string roomname)
+    {
+        GameMessage message = new GameMessage()
+        {
+            ActionCode = ActionCode.StartGame,
+            Msg = roomname,
+        };
+        Message msg = new Message();
+        msg.Data = message.ToByteArray();
+        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Room);
+        msg.DataLen = (uint)message.ToByteArray().Length;
+        SendRequest(msg);
+    }
 }
 

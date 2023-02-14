@@ -1,6 +1,7 @@
 ﻿
+using Google.Protobuf.Collections;
 using Protobuf;
-
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,6 +14,8 @@ public class GameFace : MonoBehaviour
     public RequestManager requestManager;
 
     public ClientManager clientManager;
+
+    public PlayerManager playerManager;
 
     private static GameFace face;
     public static GameFace Face
@@ -38,6 +41,9 @@ public class GameFace : MonoBehaviour
         
         clientManager = new ClientManager(this);
         clientManager.OnInit();
+
+        playerManager = new PlayerManager(this);
+        playerManager.OnInit();
     }
     
 
@@ -46,6 +52,7 @@ public class GameFace : MonoBehaviour
         clientManager.OnDestroy();
         uIManager.OnDestroy();
         requestManager.OnDestroy();
+        playerManager.OnDestroy(); 
     }
 
     public void Send(Message msg)
@@ -72,5 +79,15 @@ public class GameFace : MonoBehaviour
         uIManager.ShowMessage(str,issync);
     }
 
+    public void SetSelfId(string id) {
+        playerManager.CurPlayerID = id;
+    }
+    public void addPlayer(List<Player> packs ) {
+        playerManager.addPlayer(packs);
+    }
 
+    public void removePlayer(string id)
+    {
+        playerManager.RemovePlayer(id);  
+    }
 }

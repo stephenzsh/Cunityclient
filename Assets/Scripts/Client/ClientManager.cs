@@ -49,7 +49,15 @@ public class ClientManager : BaseManager
 
     private void StartReceive()
     {
-        socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, socket);
+        try
+        {
+            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, socket);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("接收数据失败：" + e);
+            CloseSocket();
+        }
     }
 
     private void ReceiveCallback(IAsyncResult ar)
