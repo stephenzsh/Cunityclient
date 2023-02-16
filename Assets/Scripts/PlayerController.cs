@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
-
+    public bool isLocalPlayer = false;
     TouchingDirection touchingDirections;
 
     Damageable damageable;
@@ -107,33 +107,33 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (!LockVelocity)
-        {
-            rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed * Time.fixedDeltaTime, rb.velocity.y);
-            //rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
-            
-
-
-        }
+        
+            if (!LockVelocity)
+            {
+                rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            }
+        
 
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
-
-        if (IsAlive)
+        if (isLocalPlayer)
         {
+            moveInput = context.ReadValue<Vector2>();
 
-            IsWalking = moveInput != Vector2.zero;
+            if (IsAlive)
+            {
 
-            SetFacingDirection(moveInput);
-        } else
-        {
-            IsWalking = false;
+                IsWalking = moveInput != Vector2.zero;
+
+                SetFacingDirection(moveInput);
+            }
+            else
+            {
+                IsWalking = false;
+            }
+
         }
-
-
     }
 
     private void SetFacingDirection(Vector2 moveInput)
@@ -150,22 +150,27 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && touchingDirections.IsGrounded && CanMove)
+        if (isLocalPlayer)
         {
-            animator.SetTrigger(AnimationStrings.jumpTrigger);
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-            
+            if (context.started && touchingDirections.IsGrounded && CanMove)
+            {
+                animator.SetTrigger(AnimationStrings.jumpTrigger);
+                rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            }   
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (isLocalPlayer)
         {
-            animator.SetTrigger(AnimationStrings.attackTrigger);
+            if (context.started)
+            {
+                animator.SetTrigger(AnimationStrings.attackTrigger);
+            }
         }
     }
-
+    
     public void OnHit(int damage,Vector2 knockback)
     {
         LockVelocity = true;

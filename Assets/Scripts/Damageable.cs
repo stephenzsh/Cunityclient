@@ -70,10 +70,11 @@ public class Damageable : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-
+ 
     // Update is called once per frame
     private void Update()
     {
+        
         if (isInvincible)
         {
             if (timeSinceHit > invincibilityTimer)
@@ -82,8 +83,8 @@ public class Damageable : MonoBehaviour
                 timeSinceHit = 0;
             }
            timeSinceHit += Time.deltaTime;
-        }
         
+        }
     }
 
     public bool Hit(int damage,Vector2 knockback)

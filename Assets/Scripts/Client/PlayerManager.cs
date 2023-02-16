@@ -26,14 +26,22 @@ public class PlayerManager :BaseManager
         foreach (var p in pack)
         {
 
-            GameObject g = GameObject.Instantiate(character, spwanPos.position, Quaternion.identity);
+            GameObject g; 
             
             if (p.Name.Equals(face.UserName))
             {
                 //创建本地角色
-                g.AddComponent<PlayerController>();
-                g.AddComponent<TouchingDirection>();
+                g = GameObject.Instantiate(character, spwanPos.position, Quaternion.identity);
+                g.GetComponent<PlayerController>().isLocalPlayer = true;
+                
+                
             }
+            else
+            {
+                g = GameObject.Instantiate(character, spwanPos.position, Quaternion.identity);
+                g.GetComponent<PlayerController>().isLocalPlayer = false;
+               
+            } 
             
             players.Add(p.Name, g);
         }

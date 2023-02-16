@@ -5,7 +5,7 @@ using UnityEngine;
 public class TouchingDirection : MonoBehaviour
 {
     public ContactFilter2D castFilter;
-
+    
     public float groundDistance = 0.05f;
 
     CapsuleCollider2D touchingCol;
@@ -41,6 +41,8 @@ public class TouchingDirection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        IsGrounded = touchingCol.Cast(Vector2.down, castFilter, groundHits, groundDistance) > 0;
+       
+            IsGrounded = touchingCol.Cast(Vector2.down, castFilter, groundHits, groundDistance) > 0;
+        
     }
 }
