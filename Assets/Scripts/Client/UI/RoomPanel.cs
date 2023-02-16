@@ -45,7 +45,7 @@ public class RoomPanel : BasePanel
             Destroy(content.GetChild(i).gameObject);
 
         }
-        Debug.Log("执行到者");
+        
         foreach (Player player  in msg) {
             UserItem useritem = Instantiate(useritemobj, Vector3.zero, Quaternion.identity).GetComponent<UserItem>();
             useritem.gameObject.transform.SetParent(content);

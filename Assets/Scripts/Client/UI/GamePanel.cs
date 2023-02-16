@@ -15,7 +15,8 @@ public class GamePanel : BasePanel
 
     public Button exitBtn;
 
-    private Dictionary<string,PlayerItem> itemList = new Dictionary<string,PlayerItem>();
+    private Dictionary<string, PlayerItem> itemList = new Dictionary<string, PlayerItem>();
+
 
     private float starttime;
 
@@ -30,7 +31,7 @@ public class GamePanel : BasePanel
         foreach (var player in players) {
             GameObject g = Instantiate(item, Vector3.zero, Quaternion.identity);
             g.transform.SetParent(listTrans);
-            PlayerItem pinfo = gameObject.GetComponent<PlayerItem>();
+            PlayerItem pinfo = g.GetComponent<PlayerItem>();
             pinfo.Set(player.Name,player.Hp);
             itemList.Add(player.Name, pinfo);
         }

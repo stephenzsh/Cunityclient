@@ -21,7 +21,7 @@ public class UIManager : BaseManager
         base.OnInit();
         InitPanel();
         canvasTransform = GameObject.Find("Canvas").transform;
-        PushPanel(PanelType.Game);
+       // PushPanel(PanelType.Game);
         PushPanel(PanelType.Message);
         PushPanel(PanelType.Login);
         

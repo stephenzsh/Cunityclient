@@ -30,6 +30,11 @@ public class GameFace : MonoBehaviour
         }
     }
 
+    public string UserName
+    {
+        set; get;
+    }
+
     void Awake()
     {
 
@@ -49,10 +54,10 @@ public class GameFace : MonoBehaviour
 
     private void OnDestroy()
     {
+        playerManager.OnDestroy();
         clientManager.OnDestroy();
         uIManager.OnDestroy();
         requestManager.OnDestroy();
-        playerManager.OnDestroy(); 
     }
 
     public void Send(Message msg)
@@ -79,9 +84,7 @@ public class GameFace : MonoBehaviour
         uIManager.ShowMessage(str,issync);
     }
 
-    public void SetSelfId(string id) {
-        playerManager.CurPlayerID = id;
-    }
+   
     public void addPlayer(List<Player> packs ) {
         playerManager.addPlayer(packs);
     }

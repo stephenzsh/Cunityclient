@@ -8,6 +8,11 @@ using UnityEngine;
 public class BasePanel :MonoBehaviour
 {
     protected UIManager uIManager;
+
+    protected GameFace face
+    {
+        get { return GameFace.Face; }
+    }
     public UIManager SetUIMag
     {
         set

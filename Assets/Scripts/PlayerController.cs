@@ -18,16 +18,17 @@ public class PlayerController : MonoBehaviour
         {
             if (CanMove)
             {
+                
                 if (touchingDirections.IsGrounded)
                 {
                     if (_isWalking)
-                    {
-                        return runSpeed;
-                    } else { 
-                        return walkSpeed;
+                   {
+                       return runSpeed;
+                   } else { 
+                       return walkSpeed;
                     }
                 }
-                else
+               else
                 {
                     return walkSpeed;
                 }
@@ -110,6 +111,10 @@ public class PlayerController : MonoBehaviour
         if (!LockVelocity)
         {
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            //rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+            
+
+
         }
 
     }

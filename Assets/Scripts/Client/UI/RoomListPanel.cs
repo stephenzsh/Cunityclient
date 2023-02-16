@@ -145,7 +145,6 @@ public class RoomListPanel : BasePanel
     public void RoomResponse(GameMessage msg)
     {
         RoomPanel panel = uIManager.PushPanel(PanelType.Room).GetComponent<RoomPanel>();
-        Debug.Log(msg.Msg);
         panel.roomname = msg.Msg;
         panel.GetPlayers();
     }
