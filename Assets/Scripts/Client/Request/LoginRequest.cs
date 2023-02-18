@@ -26,7 +26,7 @@ public class LoginRequest : BaseRequest
     {
         
         base.Awake(); 
-        face.AddRequest(this,RequestType.Login);
+        face.AddRequest(this, ActionCode.Login);
         
     }
 
@@ -35,7 +35,7 @@ public class LoginRequest : BaseRequest
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Login);
+        face.RemoveRequest(ActionCode.Login);
     }
 
 
@@ -44,7 +44,7 @@ public class LoginRequest : BaseRequest
     {
 
         //Debug.Log("LoginRequest Onclick");
-        LoginMessage loginmessage = new LoginMessage()
+        UserMessage loginmessage = new UserMessage()
         {
           
             Username = user,
@@ -54,7 +54,7 @@ public class LoginRequest : BaseRequest
         
         Message msg = new Message();
         msg.Data = loginmessage.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Login); 
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.UserLogin); 
         msg.DataLen = (uint)loginmessage.ToByteArray().Length;
         SendRequest(msg);
 

@@ -26,12 +26,12 @@ public class RegisterRequest:BaseRequest
     public override void Awake()
     {
         base.Awake();
-        face.AddRequest(this, RequestType.Register);
+        face.AddRequest(this, ActionCode.Register);
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Register);
+        face.RemoveRequest(ActionCode.Register);
     }
 
 
@@ -40,7 +40,7 @@ public class RegisterRequest:BaseRequest
     {
 
 
-        LoginMessage loginmessage = new LoginMessage()
+        UserMessage userMessage = new UserMessage()
         {
 
             Username = user,
@@ -49,9 +49,9 @@ public class RegisterRequest:BaseRequest
         };
 
         Message msg = new Message();
-        msg.Data = loginmessage.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Login);
-        msg.DataLen = (uint)loginmessage.ToByteArray().Length;
+        msg.Data = userMessage.ToByteArray();
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.UserLogin);
+        msg.DataLen = (uint)userMessage.ToByteArray().Length;
         SendRequest(msg);
 
 

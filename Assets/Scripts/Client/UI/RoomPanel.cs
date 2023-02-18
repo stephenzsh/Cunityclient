@@ -20,6 +20,7 @@ public class RoomPanel : BasePanel
     public GameObject useritemobj;
     
     public GameObject checkwindow;
+   
     public Button accepteButton, rejectButton;
 
     public RoomExitRequest exitRequest;
@@ -28,7 +29,7 @@ public class RoomPanel : BasePanel
 
     public PlayerRequest playerRequest;
 
-    
+    public ChatRequest chatRequest;
 
     private void Start()
     {
@@ -54,7 +55,7 @@ public class RoomPanel : BasePanel
     }
     private void SendClick()
     {
-        roomRequest.SendMsg(this.roomname ,this.inputtext.text);
+        chatRequest.SendMsg(this.roomname ,this.inputtext.text);
     }
     private void StartGameClick()
     {
@@ -128,11 +129,6 @@ public class RoomPanel : BasePanel
         checkwindow.SetActive(true);
     }
 
-    public void StartGame()
-    {
-        Debug.Log("ROOMPANEL STARTGAME");
-        
-    }
 
     public void GameStarting(List<Player> player)
     {

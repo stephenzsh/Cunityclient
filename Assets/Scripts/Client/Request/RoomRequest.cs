@@ -18,21 +18,10 @@ public class RoomRequest :BaseRequest
             if (obj.ReturnCode == ReturnCode.Fail) {
                 panel.FailResponse(obj.Msg);
             }
-            switch (obj.ActionCode){
-                case ActionCode.PlayerList:
-                    panel.UpdatePlayerList(obj.Players);
-                    break;
-                case ActionCode.Chat:
-                    panel.UpdateChat(obj.Roomlist[0]);
-                    break;
-                case ActionCode.CheckStatus:
-                    panel.CheckStatus();
-                    break;
-                
-            }
-           
-            msg = null;
-        }
+          panel.UpdatePlayerList(obj.Players);     
+         }
+         msg = null;
+        
     }
 
 
@@ -40,12 +29,12 @@ public class RoomRequest :BaseRequest
     {
         base.Awake();
         //type = 3
-        face.AddRequest(this, RequestType.Room);
+        face.AddRequest(this, ActionCode.PlayerList);
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Room);
+        face.RemoveRequest(ActionCode.PlayerList);
     }
     public override void SendRequest(Message msg)
     {
@@ -66,29 +55,11 @@ public class RoomRequest :BaseRequest
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Room);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.Room);
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }
-    public void SendMsg(string roomname ,string text)
-    {
-        RoomMessage room = new RoomMessage()
-        {
-            Name = roomname
-        };
-        GameMessage message = new GameMessage()
-        {
-            ActionCode = ActionCode.Chat,
-            Msg = text,
-        };
-        message.Roomlist.Add(room);
-        Message msg = new Message();
-        msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Room);
-        msg.DataLen = (uint)message.ToByteArray().Length;
-        SendRequest(msg);
-
-    }
+    
 
     public void StartGame(string roomname)
     {
@@ -99,7 +70,7 @@ public class RoomRequest :BaseRequest
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Room);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.Room);
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }

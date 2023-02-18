@@ -1,4 +1,5 @@
 ﻿
+using Protobuf;
 using System;
 
 using System.Net.Sockets;
@@ -71,7 +72,7 @@ public class ClientManager : BaseManager
             byte[] msgdata = bytes;
             Array.Copy(buffer, msgdata, bytesReceived);
             Message msg = MessagePack.Unpack(msgdata);
-            HandleResponse(msg, (RequestType)msg.ID);
+            HandleResponse(msg, (ActionCode)msg.ID);
         }
         else
         {
@@ -82,7 +83,7 @@ public class ClientManager : BaseManager
         // Begin receiving data again
         StartReceive();
     }
-    public void HandleResponse(Message msg, RequestType type)
+    public void HandleResponse(Message msg, ActionCode type)
     {
         face.HandleResponse(msg, type);
     }

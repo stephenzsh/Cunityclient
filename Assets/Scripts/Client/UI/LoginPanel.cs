@@ -63,7 +63,7 @@ public class LoginPanel : BasePanel
     public void OnResponse(Message msg)
     {
         GameMessage gameMessage = GameMessage.Parser.ParseFrom(msg.Data);
-        face.UserName = gameMessage.User.Name;
+        face.UserName = gameMessage.UserMessage.Username;
         uIManager.PushPanel(PanelType.Roomlist);
        
            

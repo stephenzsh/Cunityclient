@@ -10,9 +10,13 @@ public class RoomExitRequest :BaseRequest
     public override void Awake()
     {
         base.Awake();
-        face.AddRequest(this,RequestType.ExitRoom);
+        face.AddRequest(this, ActionCode.ExitRoom);
     }
-
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        face.RemoveRequest(ActionCode.ExitRoom);
+    }
     public void ExitRoom(string roomName)
     {
         Debug.Log(roomName);
@@ -25,7 +29,7 @@ public class RoomExitRequest :BaseRequest
         };
         Message msg = new Message();
         msg.Data = loginmessage.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Room);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.MainHall);
         msg.DataLen = (uint)loginmessage.ToByteArray().Length;
         SendRequest(msg);
     }

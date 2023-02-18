@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 6392211865738912108}
   - component: {fileID: 5062157932550672477}
   - component: {fileID: 3143730659803434016}
+  - component: {fileID: 9071093694659163955}
   m_Layer: 5
   m_Name: RoomPanel
   m_TagString: Untagged
@@ -863,6 +864,7 @@ MonoBehaviour:
   exitRequest: {fileID: 2043972425}
   roomRequest: {fileID: 5062157932550672477}
   playerRequest: {fileID: 6392211865738912108}
+  chatRequest: {fileID: 9071093694659163955}
 --- !u!114 &6392211865738912108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +901,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5250177eda3a494b9975c6ae67317f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 2043972427}
+--- !u!114 &9071093694659163955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950517270948540203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2331be4252a0844ad0283065b0db36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 2043972427}

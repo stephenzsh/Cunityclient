@@ -11,9 +11,9 @@ public class RequestManager : BaseManager
     public RequestManager(GameFace face) : base(face) { }
 
 
-    private Dictionary<RequestType, BaseRequest> requestDict = new Dictionary<RequestType, BaseRequest>();
+    private Dictionary<ActionCode, BaseRequest> requestDict = new Dictionary<ActionCode, BaseRequest>();
 
-    public void AddRequest(BaseRequest request,RequestType type)
+    public void AddRequest(BaseRequest request, ActionCode type)
     {
         if (requestDict.TryGetValue(type, out BaseRequest baserequest))
         {
@@ -25,11 +25,11 @@ public class RequestManager : BaseManager
             
     }
 
-    public void RemoveRequest(RequestType type)
+    public void RemoveRequest(ActionCode type)
     {
         requestDict.Remove(type);
     }
-    public void HandleResponse(Message msg, RequestType type)
+    public void HandleResponse(Message msg, ActionCode type)
     {
         
         if (requestDict.TryGetValue(type, out BaseRequest request))

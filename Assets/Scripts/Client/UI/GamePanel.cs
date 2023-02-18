@@ -17,17 +17,24 @@ public class GamePanel : BasePanel
 
     private Dictionary<string, PlayerItem> itemList = new Dictionary<string, PlayerItem>();
 
+    public GameExitRequest gameExitRequest;
 
     private float starttime;
 
     private void Start()
     {
         starttime = Time.time;
+        exitBtn.onClick.AddListener(ExitGame);
     }
 
     public void UpdateList(List<Player> players)
     {
         
+        for (int i = 0;i<listTrans.childCount;i++)
+        {
+            GameObject.Destroy(listTrans.GetChild(i).gameObject);
+        }
+        itemList.Clear();
         foreach (var player in players) {
             GameObject g = Instantiate(item, Vector3.zero, Quaternion.identity);
             g.transform.SetParent(listTrans);
@@ -53,7 +60,24 @@ public class GamePanel : BasePanel
             Debug.Log("获取不到信息");
         }
     }
+    private void ExitGame()
+    {
+        //发送请求
+        gameExitRequest.ExitGame(); 
+        
+    }
+    public void ExitGameResponse()
+    {
 
+        foreach (var VARIABLE in itemList.Values)
+        {
+            GameObject.Destroy(VARIABLE);
+        }
+        itemList.Clear();
+        face.ExitGame();
+        uIManager.PopPanel();
+        uIManager.PopPanel();
+    }
     public override void OnEnter()
     {
         base.OnEnter();

@@ -14,12 +14,12 @@ public class PlayerRequest : BaseRequest
     public override void Awake()
     {
         base.Awake();
-        face.AddRequest(this,RequestType.PlayerList);
+        face.AddRequest(this, ActionCode.CheckStatus);
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.PlayerList);
+        face.RemoveRequest(ActionCode.CheckStatus);
     }
 
     public override void OnResponse(Message msg)
@@ -47,7 +47,7 @@ public class PlayerRequest : BaseRequest
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Game);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.Game);
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 
 
+
 //调用游戏
 public class GameFace : MonoBehaviour
 {
@@ -43,19 +44,21 @@ public class GameFace : MonoBehaviour
 
         uIManager = new UIManager(this);
         uIManager.OnInit();
+       
+        playerManager = new PlayerManager(this);
+        playerManager.OnInit();
         
         clientManager = new ClientManager(this);
         clientManager.OnInit();
 
-        playerManager = new PlayerManager(this);
-        playerManager.OnInit();
+        
     }
     
 
     private void OnDestroy()
-    {
-        playerManager.OnDestroy();
+    {        
         clientManager.OnDestroy();
+        playerManager.OnDestroy();
         uIManager.OnDestroy();
         requestManager.OnDestroy();
     }
@@ -64,16 +67,16 @@ public class GameFace : MonoBehaviour
     {
         clientManager.Send(msg);
     }
-    public void HandleResponse(Message msg, RequestType type)
+    public void HandleResponse(Message msg, ActionCode type)
     {
         requestManager.HandleResponse(msg,type);
     }
 
-    public void AddRequest(BaseRequest request,RequestType type)
+    public void AddRequest(BaseRequest request,ActionCode type)
     {
         requestManager.AddRequest(request,type);
     }
-    public void RemoveRequest(RequestType type)
+    public void RemoveRequest(ActionCode type)
     {
         requestManager.RemoveRequest(type);
     }
@@ -92,5 +95,14 @@ public class GameFace : MonoBehaviour
     public void removePlayer(string id)
     {
         playerManager.RemovePlayer(id);  
+    }
+
+    public void ExitGame()
+    {
+        playerManager.GameExit();
+    }
+    public void UpPos(GameMessage gameMessage)
+    {
+        playerManager.UpPos(gameMessage);
     }
 }

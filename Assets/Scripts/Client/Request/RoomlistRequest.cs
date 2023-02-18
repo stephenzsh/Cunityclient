@@ -1,11 +1,8 @@
 ﻿using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
+
 using Protobuf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 public class RoomlistRequest : BaseRequest
 {
@@ -30,12 +27,12 @@ public class RoomlistRequest : BaseRequest
     {
         base.Awake();
         //type = 2
-        face.AddRequest(this, RequestType.Roomlist);
+        face.AddRequest(this, ActionCode.SearchRoom);
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Roomlist);
+        face.RemoveRequest(ActionCode.SearchRoom);
     }
     public override void SendRequest(Message msg)
     {
@@ -57,7 +54,7 @@ public class RoomlistRequest : BaseRequest
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Roomlist);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.MainHall);
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }
@@ -71,7 +68,7 @@ public class RoomlistRequest : BaseRequest
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Roomlist);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.MainHall);
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }
@@ -86,7 +83,7 @@ public class RoomlistRequest : BaseRequest
         };
         Message msg = new Message();
         msg.Data = message.ToByteArray();
-        msg.ID = msg.ID = Convert.ToUInt32(RequestType.Roomlist);
+        msg.ID = msg.ID = Convert.ToUInt32(RequestCode.MainHall);
         msg.DataLen = (uint)message.ToByteArray().Length;
         SendRequest(msg);
     }

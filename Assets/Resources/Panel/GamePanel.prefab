@@ -3737,6 +3737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4409833212068871126}
   - component: {fileID: 1608491111256260489}
+  - component: {fileID: 8709047753073390790}
   m_Layer: 0
   m_Name: GamePanel
   m_TagString: Untagged
@@ -3779,3 +3780,17 @@ MonoBehaviour:
   listTrans: {fileID: 6249847509612719722}
   Timetext: {fileID: 2586809851785635871}
   exitBtn: {fileID: 1813011050242265070}
+  gameExitRequest: {fileID: 8709047753073390790}
+--- !u!114 &8709047753073390790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809920286819719956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a97192cac8f6f45a26e6cac59a2b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamePanel: {fileID: 1608491111256260489}

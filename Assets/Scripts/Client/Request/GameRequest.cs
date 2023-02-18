@@ -12,13 +12,13 @@ public class GameRequest :BaseRequest
     public override void Awake()
     {
         base.Awake();
-        face.AddRequest(this,RequestType.Game);
+        face.AddRequest(this, ActionCode.StartGame);
     }
 
     public override void OnDestroy()
     {
         base.OnDestroy();
-        face.RemoveRequest(RequestType.Game);
+        face.RemoveRequest(ActionCode.StartGame);
     }
 
     private void Update()
@@ -33,7 +33,6 @@ public class GameRequest :BaseRequest
 
     public override void OnResponse(Message msg)
     {
-        base.OnResponse(msg);
         isstart = GameMessage.Parser.ParseFrom(msg.Data);
     }
     //public override void OnResponse(Message msg)
