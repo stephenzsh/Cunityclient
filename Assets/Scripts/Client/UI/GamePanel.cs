@@ -49,6 +49,8 @@ public class GamePanel : BasePanel
         Timetext.text = Mathf.Clamp((int)(Time.time - starttime), 0, 300).ToString();
     }
 
+   
+
     public void UpdateValue(string id,int v)
     {
        if (itemList.TryGetValue(id, out PlayerItem pinfo))

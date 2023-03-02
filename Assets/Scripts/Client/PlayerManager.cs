@@ -12,7 +12,7 @@ public class PlayerManager :BaseManager
    
     public GameObject character;
     
-    private Transform spwanPos; 
+   // private Transform spwanPos; 
     
     Dictionary<string, GameObject> players = new Dictionary<string, GameObject>();
     
@@ -36,10 +36,10 @@ public class PlayerManager :BaseManager
                 //创建本地角色       
                 g.AddComponent<UpPosRequest>();
                 g.AddComponent<UpPos>();
+                //g.AddComponent<UpStateMachine>();
+                //g.AddComponent<UpState>();
                 g.GetComponent<PlayerController>().isLocalPlayer = true;
-               
             }
-            
             players.Add(p.Name, g);
         }
     
@@ -78,13 +78,68 @@ public class PlayerManager :BaseManager
             if (Player.Name == face.UserName)  
                 continue;
             PosPack posPack = Player.Pos;
+            AnimatorPack animatorpack = Player.Animators;
             if (players.TryGetValue(Player.Name, out GameObject g))
             {
                 Vector2 pos = new Vector2(posPack.PosX, posPack.PosY);
-                //float CharacterRot = posPack.RotZ;
                 g.transform.position = pos;
+                Vector3 scale = new Vector3(posPack.ScaX,posPack.ScaY,0);
+                g.transform.localScale = scale;
+                Animator animator = g.GetComponent<Animator>();
+                foreach (AnimatorControllerParameter parameter in animator.parameters)
+                {
+                    if (parameter.name == "isWalking" && parameter.type == AnimatorControllerParameterType.Bool)
+                    {
+                        animator.SetBool(parameter.nameHash, animatorpack.IsWalking);
+                    }
+                    if (parameter.name == "isGrounded" && parameter.type == AnimatorControllerParameterType.Bool)
+                    {
+                        animator.SetBool(parameter.nameHash, animatorpack.IsGrounded);
+                    }
+                    if (parameter.name == "attack" && parameter.type == AnimatorControllerParameterType.Trigger && animatorpack.Attack)
+                    {
+                        animator.SetTrigger(parameter.nameHash);
+                    }
+                    if (parameter.name == "hit" && parameter.type == AnimatorControllerParameterType.Trigger && animatorpack.Hit)
+                    {
+                        animator.SetTrigger(parameter.nameHash);
+                    }
+                }
             }
         }
-        
+    }
+    public void UpState(GameMessage gameMessage)
+    {
+
+        foreach (var Player in gameMessage.Players)
+        {
+            if (Player.Name == face.UserName)
+                continue;
+            AnimatorPack animatorpack = Player.Animators;
+            
+            if (players.TryGetValue(Player.Name, out GameObject g))
+            {
+                Animator animator = g.GetComponent<Animator>();
+                foreach (AnimatorControllerParameter parameter in animator.parameters)
+                {
+                    if (parameter.name == "isWalking" && parameter.type == AnimatorControllerParameterType.Bool)
+                    {
+                        animator.SetBool(parameter.nameHash, animatorpack.IsWalking);
+                    }
+                    if (parameter.name == "isGrounded" && parameter.type == AnimatorControllerParameterType.Bool)
+                    {
+                        animator.SetBool(parameter.nameHash, animatorpack.IsGrounded);
+                    }
+                    if (parameter.name == "attack" && parameter.type == AnimatorControllerParameterType.Trigger && animatorpack.Attack)
+                    {
+                        animator.SetTrigger(parameter.nameHash);
+                    }
+                    if (parameter.name == "hit" && parameter.type == AnimatorControllerParameterType.Trigger && animatorpack.Hit)
+                    {
+                        animator.SetTrigger(parameter.nameHash);
+                    }
+                }
+            }
+        }
     }
 }

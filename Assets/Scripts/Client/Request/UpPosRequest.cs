@@ -4,7 +4,7 @@ using Protobuf;
 using System;
 using UnityEngine;
 
-public class UpPosRequest :BaseRequest
+public class UpPosRequest : BaseRequest
 {
 
     private Message msg = null;
@@ -12,23 +12,26 @@ public class UpPosRequest :BaseRequest
     public override void Awake()
     {
         base.Awake();
-        face.AddRequest(this,ActionCode.UpdatePos);
+        face.AddRequest(this, ActionCode.UpdatePos);
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
         face.RemoveRequest(ActionCode.UpdatePos);
     }
-    public void SendRequest(Vector2 pos) {
+    public void SendRequest(Vector2 pos, Vector3 scale, AnimatorPack animatorPack)
+    {
         GameMessage pack = new GameMessage { };
         pack.Msg = face.UserName;
         Player pLayerPack = new Player();
         PosPack posPack = new PosPack();
         posPack.PosX = pos.x;
         posPack.PosY = pos.y;
-        
+        posPack.ScaX = scale.x;
+        posPack.ScaY = scale.y;
         pLayerPack.Name = face.UserName;
         pLayerPack.Pos = posPack;
+        
         pack.Players.Add(pLayerPack);
         pack.ActionCode = ActionCode.UpdatePos;
         Message msg = new Message();
@@ -42,10 +45,11 @@ public class UpPosRequest :BaseRequest
     {
         this.msg = msg;
     }
+   
 
     private void Update()
     {
-        if(msg != null)
+        if (msg != null)
         {
             GameMessage gameMessage = GameMessage.Parser.ParseFrom(msg.Data);
             face.UpPos(gameMessage);

@@ -105,4 +105,10 @@ public class GameFace : MonoBehaviour
     {
         playerManager.UpPos(gameMessage);
     }
+    public void UpState(GameMessage gameMessage)
+    {
+        playerManager.UpState(gameMessage);
+    }
+   
+
 }

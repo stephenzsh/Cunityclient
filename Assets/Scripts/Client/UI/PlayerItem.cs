@@ -12,6 +12,8 @@ public class PlayerItem :MonoBehaviour
     [SerializeField]
     private Slider slider;
 
+    
+
     public void Set(string str,int v)
     {
         playername.text = str;
@@ -22,5 +24,7 @@ public class PlayerItem :MonoBehaviour
     {
         slider.value = v;
     }
-    
+
+   
+
 }

@@ -35,7 +35,7 @@ public class ClientManager : BaseManager
         
         try
         {
-            socket.Connect("127.0.0.1", 8999);
+            socket.Connect("192.168.0.104", 8999);
             ThreadStart ts = new ThreadStart(StartReceive);
             Thread t = new Thread(ts);
             t.IsBackground=true;
