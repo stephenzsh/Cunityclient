@@ -1,18 +1,17 @@
 ﻿using Protobuf;
 using UnityEngine;
 
-public class UpPos:MonoBehaviour
+public class UpState : MonoBehaviour
 {
-    public UpPosRequest upPosRequest;
+    public UpStateMachine upState;
 
     private void Start()
     {
-        upPosRequest= GetComponent<UpPosRequest>();
-        InvokeRepeating("UpPosFun",1,1f/60f );
+        upState = GetComponent<UpStateMachine>();
+        InvokeRepeating("UpStateMac", 1, 1f / 10f);
     }
-    private void UpPosFun() {
-        Vector2 pos = transform.position;
-        Vector3 scale = transform.localScale;
+    private void UpStateMac()
+    {
         AnimatorPack animatorPack = new AnimatorPack();
         Animator animator = transform.GetComponent<Animator>();
         foreach (AnimatorControllerParameter parameter in animator.parameters)
@@ -37,7 +36,9 @@ public class UpPos:MonoBehaviour
                 animatorPack.Hit = animator.GetBool(parameter.nameHash);
             }
         }
-        upPosRequest.SendRequest(pos,scale,animatorPack);
-    }
+        upState.SendRequest(animatorPack);
+    }  
 }
+
+
 

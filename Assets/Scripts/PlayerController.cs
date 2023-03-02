@@ -112,8 +112,6 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed * Time.fixedDeltaTime, rb.velocity.y);
             }
-        
-
     }
     public void OnMove(InputAction.CallbackContext context)
     {
